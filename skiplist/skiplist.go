@@ -36,7 +36,11 @@ func New[T cmp.Ordered]() *SkipList[T] {
 
 // NewWithConfig creates a new Skip List with custom configuration.
 func NewWithConfig[T cmp.Ordered](maxLevel int, probability float64) *SkipList[T] {
-	source := rand.NewSource(time.Now().UnixNano())
+	return NewWithSource[T](maxLevel, probability, rand.NewSource(time.Now().UnixNano()))
+}
+
+// NewWithSource creates a new Skip List with an explicit random source (for reproducible tests and traces).
+func NewWithSource[T cmp.Ordered](maxLevel int, probability float64, source rand.Source) *SkipList[T] {
 	return &SkipList[T]{
 		head: &Node[T]{
 			forward: make([]*Node[T], maxLevel),
@@ -46,6 +50,11 @@ func NewWithConfig[T cmp.Ordered](maxLevel int, probability float64) *SkipList[T
 		probability: probability,
 		rng:         rand.New(source),
 	}
+}
+
+// NewForTest builds a skip list with default max level and probability using a fixed RNG seed.
+func NewForTest[T cmp.Ordered](seed int64) *SkipList[T] {
+	return NewWithSource[T](defaultMaxLevel, defaultProbability, rand.NewSource(seed))
 }
 
 // randomLevel generates a random level for a new node.
@@ -98,23 +107,22 @@ func (sl *SkipList[T]) Insert(val T) {
 	}
 }
 
-// Search checks if an element exists in the Skip List.
-func (sl *SkipList[T]) Search(val T) bool {
-	sl.mu.RLock()
-	defer sl.mu.RUnlock()
-
+// searchPredAndCandidate returns the level-0 predecessor and its forward[0] for a search key.
+// Caller must hold at least an RLock.
+func (sl *SkipList[T]) searchPredAndCandidate(val T) (pred *Node[T], candidate *Node[T]) {
 	current := sl.head
-
-	// Traverse from top level down to level 0
 	for i := sl.level - 1; i >= 0; i-- {
 		for current.forward[i] != nil && current.forward[i].value < val {
 			current = current.forward[i]
 		}
 	}
+	return current, current.forward[0]
+}
 
-	// Move to the next node at level 0
-	current = current.forward[0]
-
-	// Check if the current node contains the target value
-	return current != nil && current.value == val
+// Search checks if an element exists in the Skip List.
+func (sl *SkipList[T]) Search(val T) bool {
+	sl.mu.RLock()
+	defer sl.mu.RUnlock()
+	_, cand := sl.searchPredAndCandidate(val)
+	return cand != nil && cand.value == val
 }

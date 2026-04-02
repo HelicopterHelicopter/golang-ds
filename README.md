@@ -37,8 +37,17 @@ func main() {
 
 ## Testing
 
-To run the tests for all data structures, including the race detector to ensure thread safety, use the following command:
+To run the tests for all data structures, including the race detector to ensure thread safety, use the following command (scoped to Go packages so `web/node_modules` is not scanned):
 
 ```bash
-go test -v -race ./...
+go test -v -race ./skiplist/... ./cmd/...
+```
+
+## Visualizations
+
+The `web/` directory is a static Vite + React app that steps through JSON **traces** (for example skip list search). Regenerate the sample fixture after changing trace output:
+
+```bash
+go run ./cmd/tracegen > web/public/fixtures/example-skiplist-search.json
+cd web && npm install && npm run dev
 ```

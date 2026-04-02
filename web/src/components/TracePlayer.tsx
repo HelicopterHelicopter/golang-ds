@@ -38,15 +38,30 @@ export function TracePlayer({ trace }: Props) {
     [max],
   )
 
+  const togglePlay = useCallback(() => {
+    if (playing) {
+      setPlaying(false)
+      return
+    }
+    if (safeIndex >= max) {
+      setStepIndex(0)
+    }
+    setPlaying(true)
+  }, [playing, safeIndex, max])
+
   useEffect(() => {
     if (!playing) return
     const id = window.setInterval(() => {
-      setStepIndex((i) => {
-        if (i >= max) {
-          window.clearInterval(id)
-          return i
+      setStepIndex((prev) => {
+        if (prev >= max) {
+          queueMicrotask(() => setPlaying(false))
+          return prev
         }
-        return i + 1
+        const next = prev + 1
+        if (next >= max) {
+          queueMicrotask(() => setPlaying(false))
+        }
+        return next
       })
     }, 650)
     return () => window.clearInterval(id)
@@ -101,7 +116,7 @@ export function TracePlayer({ trace }: Props) {
         </button>
         <button
           type="button"
-          onClick={() => setPlaying((p) => !p)}
+          onClick={togglePlay}
           disabled={max <= 0}
         >
           {playing ? 'Pause' : 'Play'}
