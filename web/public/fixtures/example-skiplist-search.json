@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": 1,
+  "kind": "skiplist-search",
+  "meta": {
+    "targetValue": "15",
+    "found": true
+  },
+  "steps": [
+    {
+      "activeLevel": 3,
+      "cursorNodeId": "head",
+      "phase": "at_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 3,
+      "cursorNodeId": "n1",
+      "phase": "scan_forward",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 3,
+      "cursorNodeId": "n1",
+      "phase": "end_of_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 2,
+      "cursorNodeId": "n1",
+      "phase": "at_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 2,
+      "cursorNodeId": "n1",
+      "phase": "end_of_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 1,
+      "cursorNodeId": "n1",
+      "phase": "at_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 1,
+      "cursorNodeId": "n1",
+      "phase": "end_of_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 0,
+      "cursorNodeId": "n1",
+      "phase": "at_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 0,
+      "cursorNodeId": "n1",
+      "phase": "end_of_level",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 0,
+      "cursorNodeId": "n2",
+      "phase": "final_check",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    },
+    {
+      "activeLevel": 0,
+      "cursorNodeId": "n2",
+      "phase": "done",
+      "graph": {
+        "listLevel": 4,
+        "nodes": [
+          {
+            "id": "head",
+            "value": "",
+            "height": 4
+          },
+          {
+            "id": "n0",
+            "value": "5",
+            "height": 3
+          },
+          {
+            "id": "n1",
+            "value": "10",
+            "height": 4
+          },
+          {
+            "id": "n2",
+            "value": "15",
+            "height": 1
+          },
+          {
+            "id": "n3",
+            "value": "20",
+            "height": 3
+          }
+        ],
+        "edges": [
+          {
+            "level": 0,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 1,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 2,
+            "from": "head",
+            "to": "n0"
+          },
+          {
+            "level": 3,
+            "from": "head",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 1,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 2,
+            "from": "n0",
+            "to": "n1"
+          },
+          {
+            "level": 0,
+            "from": "n1",
+            "to": "n2"
+          },
+          {
+            "level": 1,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 2,
+            "from": "n1",
+            "to": "n3"
+          },
+          {
+            "level": 0,
+            "from": "n2",
+            "to": "n3"
+          }
+        ]
+      }
+    }
+  ]
+}
