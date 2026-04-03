@@ -4,6 +4,71 @@
   padding: 1.5rem 1.25rem 3rem;
 }
 
+.mode-toggle {
+  display: flex;
+  gap: 0;
+  margin-bottom: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.mode-toggle__btn {
+  font: inherit;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: var(--btn);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.mode-toggle__btn--on {
+  background: color-mix(in srgb, var(--accent) 28%, var(--btn));
+  color: var(--text);
+  font-weight: 600;
+}
+
+.form-grid--quad {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .form-grid--quad {
+    grid-template-columns: 1fr 120px;
+  }
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 640px) {
+  .field--wide {
+    grid-column: 1;
+  }
+}
+
+.quadtree-viz {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: stretch;
+  min-height: 400px;
+}
+
+.quadtree-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(620px, 65vh);
+}
+
+.quadtree-caption {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
 .editor-panel {
   background: var(--panel);
   border: 1px solid var(--border);

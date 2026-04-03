@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { VizEnvelope } from '../types/trace'
 import { VisualizationView } from '../visualizations/VisualizationView'
 
@@ -6,7 +6,7 @@ type Props = {
   trace: VizEnvelope
 }
 
-function phaseLabel(phase: string) {
+function skipListPhaseLabel(phase: string) {
   switch (phase) {
     case 'at_level':
       return 'Entered this level'
@@ -23,13 +23,81 @@ function phaseLabel(phase: string) {
   }
 }
 
+function quadtreePhaseLabel(phase: string) {
+  switch (phase) {
+    case 'after_insert':
+      return 'After insert'
+    default:
+      return phase
+  }
+}
+
+function TraceChrome({ trace }: { trace: VizEnvelope }) {
+  if (trace.kind === 'skiplist-search') {
+    return (
+      <>
+        <h1>Skip list · search</h1>
+        <p className="trace-sub">
+          Target <strong>{trace.meta.targetValue}</strong>
+          {trace.meta.found ? (
+            <span className="badge badge--ok"> found</span>
+          ) : (
+            <span className="badge badge--miss"> not found</span>
+          )}
+        </p>
+      </>
+    )
+  }
+  const b = trace.meta.bounds
+  return (
+    <>
+      <h1>Quadtree · insert</h1>
+      <p className="trace-sub">
+        Capacity <strong>{trace.meta.capacity}</strong>
+        <span className="muted">
+          {' '}
+          · bounds [{b.minX.toFixed(1)}, {b.minY.toFixed(1)}] — [
+          {b.maxX.toFixed(1)}, {b.maxY.toFixed(1)}]
+        </span>
+      </p>
+    </>
+  )
+}
+
+function TraceAside({ trace, stepIndex }: { trace: VizEnvelope; stepIndex: number }) {
+  if (trace.kind === 'skiplist-search') {
+    const step = trace.steps[stepIndex]
+    if (!step) return null
+    return (
+      <aside className="trace-aside" aria-live="polite">
+        <strong>{skipListPhaseLabel(step.phase)}</strong>
+        <span className="muted">
+          {' '}
+          — active level L{step.activeLevel}
+        </span>
+      </aside>
+    )
+  }
+  const q = trace.steps[stepIndex]
+  if (!q) return null
+  return (
+    <aside className="trace-aside" aria-live="polite">
+      <strong>{quadtreePhaseLabel(q.phase)}</strong>
+      <span className="muted">
+        {' '}
+        — point {q.insertIndex + 1} / {trace.meta.pointCount} ({q.lastPointId})
+      </span>
+    </aside>
+  )
+}
+
 export function TracePlayer({ trace }: Props) {
   const [stepIndex, setStepIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
 
-  const max = trace.steps.length - 1
-  const safeIndex = Math.min(Math.max(0, stepIndex), max)
-  const step = trace.steps[safeIndex]
+  const steps = trace.steps
+  const max = steps.length > 0 ? steps.length - 1 : 0
+  const safeIndex = steps.length > 0 ? Math.min(Math.max(0, stepIndex), max) : 0
 
   const go = useCallback(
     (delta: number) => {
@@ -76,27 +144,20 @@ export function TracePlayer({ trace }: Props) {
     return () => window.removeEventListener('keydown', onKey)
   }, [go])
 
-  const meta =
-    trace.kind === 'skiplist-search'
-      ? {
-          target: trace.meta.targetValue,
-          found: trace.meta.found,
-        }
-      : { target: '', found: false }
+  const canStep = steps.length > 0
+
+  const noStepsMessage = useMemo(() => {
+    if (trace.kind === 'quadtree-insert' && steps.length === 0) {
+      return 'No insert steps (empty point set).'
+    }
+    return null
+  }, [trace.kind, steps.length])
 
   return (
     <div className="trace-player">
       <header className="trace-header">
         <div>
-          <h1>Skip list · search</h1>
-          <p className="trace-sub">
-            Target <strong>{meta.target}</strong>
-            {meta.found ? (
-              <span className="badge badge--ok"> found</span>
-            ) : (
-              <span className="badge badge--miss"> not found</span>
-            )}
-          </p>
+          <TraceChrome trace={trace} />
         </div>
         <div className="trace-kinds">
           <span className="muted">kind:</span>{' '}
@@ -107,50 +168,51 @@ export function TracePlayer({ trace }: Props) {
       </header>
 
       <div className="viz-panel">
-        <VisualizationView trace={trace} stepIndex={safeIndex} />
+        {noStepsMessage ? (
+          <p className="banner">{noStepsMessage}</p>
+        ) : (
+          <VisualizationView trace={trace} stepIndex={safeIndex} />
+        )}
       </div>
 
       <div className="trace-controls">
-        <button type="button" onClick={() => go(-1)} disabled={safeIndex <= 0}>
+        <button
+          type="button"
+          onClick={() => go(-1)}
+          disabled={!canStep || safeIndex <= 0}
+        >
           Prev
         </button>
         <button
           type="button"
           onClick={togglePlay}
-          disabled={max <= 0}
+          disabled={!canStep || max <= 0}
         >
           {playing ? 'Pause' : 'Play'}
         </button>
         <button
           type="button"
           onClick={() => go(1)}
-          disabled={safeIndex >= max}
+          disabled={!canStep || safeIndex >= max}
         >
           Next
         </button>
         <label className="step-slider">
           <span className="muted">
-            Step {safeIndex + 1} / {trace.steps.length}
+            Step {canStep ? safeIndex + 1 : 0} / {steps.length}
           </span>
           <input
             type="range"
             min={0}
-            max={max}
-            value={safeIndex}
+            max={Math.max(0, max)}
+            value={canStep ? safeIndex : 0}
             onChange={(e) => setStepIndex(Number(e.target.value))}
+            disabled={!canStep}
           />
         </label>
       </div>
 
-      {step && (
-        <aside className="trace-aside" aria-live="polite">
-          <strong>{phaseLabel(step.phase)}</strong>
-          <span className="muted">
-            {' '}
-            — active level L{step.activeLevel}
-          </span>
-        </aside>
-      )}
+      {canStep ? <TraceAside trace={trace} stepIndex={safeIndex} /> : null}
     </div>
   )
 }

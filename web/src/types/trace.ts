@@ -40,8 +40,61 @@ export type SkipListSearchTrace = {
   steps: SearchStep[]
 }
 
+export type QuadtreeInsertPhase = 'after_insert'
+
+export type QuadtreeGraphNode = {
+  id: string
+  parentId: string
+  minX: number
+  minY: number
+  maxX: number
+  maxY: number
+  depth: number
+  childNW: string
+  childNE: string
+  childSW: string
+  childSE: string
+}
+
+export type QuadtreeGraphPoint = {
+  id: string
+  x: number
+  y: number
+  leafId: string
+}
+
+export type QuadtreeGraphSnapshot = {
+  bounds: {
+    minX: number
+    minY: number
+    maxX: number
+    maxY: number
+  }
+  nodes: QuadtreeGraphNode[]
+  points: QuadtreeGraphPoint[]
+}
+
+export type QuadtreeInsertStep = {
+  phase: QuadtreeInsertPhase
+  insertIndex: number
+  lastPointId: string
+  graph: QuadtreeGraphSnapshot
+}
+
+export type QuadtreeInsertTrace = {
+  schemaVersion: number
+  kind: 'quadtree-insert'
+  meta: {
+    capacity: number
+    pointCount: number
+    bounds: QuadtreeGraphSnapshot['bounds']
+    maxDepth: number
+  }
+  steps: QuadtreeInsertStep[]
+}
+
 /** Discriminated union — add new data structures here. */
-export type VizEnvelope = SkipListSearchTrace
+export type VizEnvelope = SkipListSearchTrace | QuadtreeInsertTrace
 
 export function parseVizEnvelope(data: unknown): VizEnvelope {
   if (typeof data !== 'object' || data === null) {
@@ -53,6 +106,23 @@ export function parseVizEnvelope(data: unknown): VizEnvelope {
     const t = data as SkipListSearchTrace
     if (typeof t.schemaVersion !== 'number' || !Array.isArray(t.steps)) {
       throw new Error('Invalid skiplist-search trace shape')
+    }
+    return t
+  }
+  if (kind === 'quadtree-insert') {
+    const t = data as QuadtreeInsertTrace
+    if (typeof t.schemaVersion !== 'number' || !Array.isArray(t.steps)) {
+      throw new Error('Invalid quadtree-insert trace shape')
+    }
+    const meta = t.meta
+    if (
+      typeof meta !== 'object' ||
+      meta === null ||
+      typeof meta.capacity !== 'number' ||
+      typeof meta.pointCount !== 'number' ||
+      typeof meta.maxDepth !== 'number'
+    ) {
+      throw new Error('Invalid quadtree-insert meta')
     }
     return t
   }
